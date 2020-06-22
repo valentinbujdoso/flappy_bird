@@ -1,8 +1,8 @@
 package com.valentinbujdoso.states;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public abstract class State {
     protected OrthographicCamera cam;
@@ -17,7 +17,7 @@ public abstract class State {
 
     protected abstract void handleInput();
     public abstract void update(float dt);
-    public abstract void render(SpriteBatch sb);
+    public abstract void render(Stage stage);
     public abstract void dispose();
 
 }

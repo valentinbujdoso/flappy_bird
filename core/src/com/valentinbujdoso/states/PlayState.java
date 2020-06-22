@@ -2,8 +2,8 @@ package com.valentinbujdoso.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.valentinbujdoso.FlappyDemo;
 import com.valentinbujdoso.sprites.Bird;
@@ -66,19 +66,21 @@ public class PlayState extends State{
     }
 
     @Override
-    public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(cam.combined);
-        sb.begin();
-        sb.draw(bg, cam.position.x - (cam.viewportWidth / 2), 0);
-        sb.draw(bird.getTexture(), bird.getPosition().x, bird.getPosition().y);
+    public void render(Stage stage) {
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.getBatch().setProjectionMatrix(cam.combined);
+        stage.getBatch().begin();
+        stage.getBatch().draw(bg, cam.position.x - (cam.viewportWidth / 2), 0);
+        stage.getBatch().draw(bird.getTexture(), bird.getPosition().x, bird.getPosition().y);
         for(Tube tube : tubes) {
-            sb.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
-            sb.draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
+            stage.getBatch().draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
+            stage.getBatch().draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
         }
 
-        sb.draw(ground, groundPos1.x, groundPos1.y);
-        sb.draw(ground, groundPos2.x, groundPos2.y);
-        sb.end();
+        stage.getBatch().draw(ground, groundPos1.x, groundPos1.y);
+        stage.getBatch().draw(ground, groundPos2.x, groundPos2.y);
+        stage.getBatch().end();
+        stage.draw();
     }
 
     @Override

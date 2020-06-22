@@ -2,12 +2,13 @@ package com.valentinbujdoso.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.valentinbujdoso.FlappyDemo;
 
 public class MenuState extends State{
     private Texture background;
     private Texture playBtn;
+
     public MenuState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false, FlappyDemo.WIDTH / 2, FlappyDemo.HEIGHT / 2);
@@ -28,12 +29,15 @@ public class MenuState extends State{
     }
 
     @Override
-    public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(cam.combined);
-        sb.begin();
-        sb.draw(background, 0, 0);
-        sb.draw(playBtn, cam.position.x - (playBtn.getWidth() / 2), cam.position.y);
-        sb.end();
+    public void render(Stage stage) {
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.getBatch().setProjectionMatrix(cam.combined);
+        stage.getBatch().begin();
+        stage.getBatch().draw(background, 0, 0);
+        stage.getBatch().draw(playBtn, cam.position.x - (playBtn.getWidth() / 2), cam.position.y);
+        stage.getBatch().end();
+
+        stage.draw();
     }
 
     @Override

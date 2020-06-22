@@ -4,8 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.valentinbujdoso.states.GameStateManager;
 import com.valentinbujdoso.states.MenuState;
 
@@ -15,12 +14,12 @@ public class FlappyDemo extends ApplicationAdapter {
 
 	public static final String TITLE = "Flappy Bird";
 	private GameStateManager gsm;
-	private SpriteBatch batch;
+	private Stage stage;
 	private Music music;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
+		stage = new Stage();
 		gsm = new GameStateManager();
 		music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 		music.setLooping(true);
@@ -34,7 +33,7 @@ public class FlappyDemo extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render(batch);
+		gsm.render(stage);
 	}
 	
 	@Override

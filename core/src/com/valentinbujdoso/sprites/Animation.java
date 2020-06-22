@@ -1,16 +1,19 @@
 package com.valentinbujdoso.sprites;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 public class Animation {
     private Array<TextureRegion> frames;
+    private TextureRegion region;
     private float maxFrameTime;
     private float currentFrameTime;
     private int frameCount;
     private int frame;
 
-    public Animation(TextureRegion region, int frameCount, float cycleTime) {
+    public Animation(Texture texture, int frameCount, float cycleTime) {
+        region = new TextureRegion(texture);
         frames = new Array<TextureRegion>();
         int frameWidth = region.getRegionWidth() / frameCount;
 
